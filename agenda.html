@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+  <title>Agenda</title>
+</head>
+<body>
+
+  <header>
+    <h1>Agenda Personal</h1>
+  </header>
+
+  <section id="formulario">
+    <form id="eventForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required>
+
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" name="descripcion" required></textarea>
+
+      <button type="submit">Agregar Evento</button>
+    </form>
+  </section>
+
+  <section id="eventos">
+    <h2>Eventos Agregados</h2>
+    <ul id="eventList">
+      </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Agenda Personal. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const eventForm = document.getElementById('eventForm');
+    const eventList = document.getElementById('eventList');
+
+    eventForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const fecha = document.getElementById('fecha').value;
+      const descripcion = document.getElementById('descripcion').value;
+
+      // Crear elemento de evento
+      const eventItem = document.createElement('li');
+      eventItem.innerHTML = `
+        <p><strong>${nombre}</strong> - ${fecha}</p>
+        <p>${descripcion}</p>
+      `;
+
+      // Agregar evento a la lista
+      eventList.appendChild(eventItem);
+
+      // Limpiar formulario
+      eventForm.reset();
+    });
+  </script>
+</body>
+</html>
